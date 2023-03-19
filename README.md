@@ -7,4 +7,4 @@
 
 > Reference : Android Kotlin 實作開發
 
-###### tags: NCYU class
+###### tags: `NCYU_class`

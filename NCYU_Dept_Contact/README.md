@@ -5,7 +5,7 @@
 * RecyclerView
 
 ## Contact Page
-![](https://i.imgur.com/4WwN3J9.gif)
+![home page gif demo](https://user-images.githubusercontent.com/79969875/228995911-0af38347-aff6-4b00-a25a-f0e2efb53e25.gif)
 
 
 

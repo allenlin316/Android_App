@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">台南天氣</string>
+
+    <integer-array name="image_list">
+        <item>@drawable/_01d</item>
+        <item>@drawable/_01n</item>
+        <item>@drawable/_02d</item>
+        <item>@drawable/_02n</item>
+        <item>@drawable/_03d</item>
+        <item>@drawable/_03n</item>
+        <item>@drawable/_04d</item>
+        <item>@drawable/_04n</item>
+        <item>@drawable/_09d</item>
+        <item>@drawable/_09n</item>
+        <item>@drawable/_10d</item>
+        <item>@drawable/_10n</item>
+        <item>@drawable/_11d</item>
+        <item>@drawable/_11n</item>
+        <item>@drawable/_13d</item>
+        <item>@drawable/_13n</item>
+        <item>@drawable/_50d</item>
+        <item>@drawable/_50n</item>
+    </integer-array>
+
+</resources>

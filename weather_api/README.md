@@ -15,4 +15,7 @@
     * Wind direction
     * Time of data calculation
 
+## Reference
+* [OpenWeather API](https://openweathermap.org/)
+
 ###### tags: `Android_App`

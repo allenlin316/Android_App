@@ -137,6 +137,8 @@ class RegisterUserActivity: AppCompatActivity() {
             val isValidUser = viewModel.isValidUser(account, password)
             if(isValidUser){
                 showToast("Welcome $account")
+                // start MainActivity
+                startActivity(Intent(this@RegisterUserActivity,MainActivity::class.java))
             } else{
                 showToast("帳號或密碼錯誤")
             }
@@ -153,8 +155,6 @@ class RegisterUserActivity: AppCompatActivity() {
             viewModel.addUsers(user)
             // display a Toast message to confirm the register
             showToast("成功儲存 $account, $password")
-            // start MainActivity
-            //startActivity(Intent(this@RegisterUserActivity,MainActivity::class.java))
         } else{
             showToast("帳號被用過囉")
         }

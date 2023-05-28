@@ -5,17 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryColor">
+    android:background="@color/primaryTextColor"
+    tools:context=".RegisterUserActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/cardview"
-        app:layout_constraintEnd_toEndOf="@+id/cardview"
-        app:layout_constraintStart_toStartOf="@+id/cardview"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/taskblitz_logo" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
@@ -29,8 +21,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardElevation="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -40,16 +32,29 @@
             android:paddingRight="5dp"
             android:paddingLeft="5dp">
 
+            <TextView
+                android:id="@+id/tv_alert_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="帳號狀態訊息提示"
+                android:textColor="@color/error"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@id/ed_account"
+                app:layout_constraintStart_toStartOf="@id/ed_account"
+                app:layout_constraintTop_toBottomOf="@+id/ed_account"
+                app:layout_constraintVertical_chainStyle="packed" />
+
             <EditText
                 android:id="@+id/ed_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="12"
-                android:layout_marginTop="40dp"
+                android:hint="請輸入帳號"
                 android:inputType="textPersonName"
-                android:hint="Account"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.509"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/ed_password"
@@ -57,31 +62,46 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:ems="12"
-                android:hint="Password"
-                android:inputType="textPersonName"
+                android:hint="請輸入密碼"
+                android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="@+id/ed_account"
                 app:layout_constraintStart_toStartOf="@+id/ed_account"
                 app:layout_constraintTop_toBottomOf="@+id/ed_account" />
 
-            <Button
-                android:id="@+id/button"
+            <EditText
+                android:id="@+id/ed_check_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:text="登入"
+                android:layout_marginTop="24dp"
+                android:ems="12"
+                android:hint="請再次輸入密碼"
+                android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="@+id/ed_password"
                 app:layout_constraintStart_toStartOf="@+id/ed_password"
                 app:layout_constraintTop_toBottomOf="@+id/ed_password" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tv_alert_pwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="點我註冊"
-                app:layout_constraintEnd_toEndOf="@+id/button"
-                app:layout_constraintStart_toStartOf="@+id/button"
-                app:layout_constraintTop_toBottomOf="@+id/button" />
+                android:text="帳號狀態訊息提示"
+                android:textColor="@color/error"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="@id/ed_check_password"
+                app:layout_constraintStart_toStartOf="@id/ed_check_password"
+                app:layout_constraintTop_toBottomOf="@+id/ed_check_password" />
+
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="註冊"
+                app:layout_constraintEnd_toEndOf="@+id/ed_check_password"
+                app:layout_constraintStart_toStartOf="@+id/ed_check_password"
+                app:layout_constraintTop_toBottomOf="@+id/ed_check_password" />
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

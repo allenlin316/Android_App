@@ -23,6 +23,10 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
         return repository.getFinishTasks()
     }
 
+    fun getTaskByDate(date: String): Tasks{
+        return repository.getTaskByDate(date)
+    }
+
     fun finishTask(uid: Int){
         repository.finishTask(uid)
     }

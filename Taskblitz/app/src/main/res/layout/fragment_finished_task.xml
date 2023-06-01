@@ -23,7 +23,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="100dp"
         app:cardBackgroundColor="@android:color/darker_gray"
-        app:cardCornerRadius="8dp"
+        app:cardCornerRadius="65dp"
         app:cardElevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
             android:layout_height="match_parent"
             android:padding="10dp"
             android:text="依據日期搜尋"
-            android:textSize="25sp" />
+            android:textSize="20sp" />
 
     </androidx.cardview.widget.CardView>
 
@@ -44,6 +44,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="搜尋"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="@+id/cardView" />

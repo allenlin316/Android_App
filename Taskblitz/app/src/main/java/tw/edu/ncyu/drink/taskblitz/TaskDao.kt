@@ -16,6 +16,9 @@ interface TaskDao {
     @Query("Select * from Tasks")
     fun getAllTasks(): LiveData<List<Tasks>>
 
+    @Query("SELECT * FROM Tasks WHERE date=:date")
+    fun getTaskByDate(date: String): Tasks
+
     @Query("SELECT * FROM Tasks WHERE isFinished=1")
     fun getFinishTasks(): LiveData<List<Tasks>>
 

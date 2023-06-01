@@ -4,17 +4,17 @@
         android:id="@+id/item_home"
         android:enabled="true"
         android:icon="@drawable/ic_home_btn"
-        android:title="Home"/>
+        android:title="Today"/>
 
     <item
         android:id="@+id/item_finished_task"
         android:enabled="true"
-        android:icon="@drawable/ic_inbox_btn"
+        android:icon="@android:drawable/ic_menu_today"
         android:title="Done"/>
 
     <item
-        android:id="@+id/item_upcoming"
+        android:id="@+id/item_inbox"
         android:enabled="true"
-        android:icon="@android:drawable/ic_menu_my_calendar"
-        android:title="Upcoming"/>
+        android:icon="@drawable/ic_inbox_btn"
+        android:title="Inbox"/>
 </menu>

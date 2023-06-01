@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                     binding.viewPage.currentItem = 1
                     true
                 }
-                R.id.item_upcoming-> {
+                R.id.item_inbox-> {
                     binding.viewPage.currentItem = 2
                     true
                 }
@@ -82,7 +82,7 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int) = when(position) {
         0 -> HomeFragment() //第一頁要呈現的 Fragment
         1 -> FinishedTaskFragment()
-        else -> UpcomingFragment() //第三頁要呈現的 Fragment
+        else -> InboxFragment() //第三頁要呈現的 Fragment
     }
     //回傳 Fragment 頁數
     override fun getCount() = 3

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import tw.edu.ncyu.drink.taskblitz.databinding.FragmentHomeLayoutBinding
+import java.util.*
 
 class HomeFragment: Fragment(){
 
@@ -22,7 +23,7 @@ class HomeFragment: Fragment(){
     private val binding get() = _binding!!
     val viewModel : TaskViewModel  by viewModels()
     private lateinit var taskAdapter: TaskAdapter
-
+    val today = getCurrentDate()
 
     //在 onCreateView 中定義 FirstFragment 的畫面為 fragment_first
     override fun onCreateView(inflater: LayoutInflater, container:
@@ -30,10 +31,11 @@ class HomeFragment: Fragment(){
         _binding = FragmentHomeLayoutBinding.inflate(inflater, container, false)
 
         // Observe the LiveData returned by the getAllTasks method
-        viewModel.getAllTasks().observe(viewLifecycleOwner , Observer {  list->
-            Log.d("getAllTasks", list.toString())
+        viewModel.getTasksToday(today).observe(viewLifecycleOwner , Observer {  list->
+            Log.d("getAllTasks_today", list.toString())
             if(list.isEmpty()){
                 // no tasks has been created
+                binding.tvNotification.text = "今天沒有任務"
                 binding.tvNotification.visibility = View.VISIBLE
             } else {
                 binding.tvNotification.visibility = View.GONE
@@ -63,5 +65,15 @@ class HomeFragment: Fragment(){
         })
 
         return binding.root
+    }
+
+    private fun getCurrentDate(): String {
+        // Get the current date
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month =
+            calendar.get(Calendar.MONTH) + 1 // Note: Calendar.MONTH is zero-based, so add 1 to get the actual month
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        return "$year/$month/$day"
     }
 }

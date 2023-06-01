@@ -32,6 +32,12 @@ class HomeFragment: Fragment(){
         // Observe the LiveData returned by the getAllTasks method
         viewModel.getAllTasks().observe(viewLifecycleOwner , Observer {  list->
             Log.d("getAllTasks", list.toString())
+            if(list.isEmpty()){
+                // no tasks has been created
+                binding.tvNotification.visibility = View.VISIBLE
+            } else {
+                binding.tvNotification.visibility = View.GONE
+            }
             taskAdapter = TaskAdapter(viewModel, list)
             // set the layout manager and the adapter for the recycler view
             binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)

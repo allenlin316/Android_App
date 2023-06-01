@@ -19,12 +19,12 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
         return repository.getAllTasks()
     }
 
-    fun getFinishTasks(): LiveData<List<Tasks>>{
-        return repository.getFinishTasks()
+    fun getFinishedTasks(): LiveData<List<Tasks>>{
+        return repository.getFinishedTasks()
     }
 
-    fun getTaskByDate(date: String): Tasks{
-        return repository.getTaskByDate(date)
+    fun getFinishedTasksByDate(date: String): LiveData<List<Tasks>>{
+        return repository.getFinishedTasksByDate(date)
     }
 
     fun finishTask(uid: Int){

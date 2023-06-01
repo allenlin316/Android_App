@@ -13,12 +13,12 @@ class TaskRepository(val dao: TaskDao) {
         return dao.getAllTasks()
     }
 
-    fun getTaskByDate(date: String): Tasks{
-        return dao.getTaskByDate(date)
+    fun getFinishedTasksByDate(date: String): LiveData<List<Tasks>>{
+        return dao.getFinishedTasksByDate(date)
     }
 
-    fun getFinishTasks(): LiveData<List<Tasks>>{
-        return dao.getFinishTasks()
+    fun getFinishedTasks(): LiveData<List<Tasks>>{
+        return dao.getFinishedTasks()
     }
 
     fun finishTask(uid:Int){

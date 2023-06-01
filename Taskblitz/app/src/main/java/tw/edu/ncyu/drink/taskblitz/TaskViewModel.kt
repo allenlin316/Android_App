@@ -11,15 +11,31 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
         repository = TaskRepository(dao)
     }
 
+    fun insertTask(task: Tasks){
+        repository.insertTask(task)
+    }
+
     fun getAllTasks(): LiveData<List<Tasks>>{
         return repository.getAllTasks()
     }
 
-    fun finishTask(uid: Long){
+    fun getFinishTasks(): LiveData<List<Tasks>>{
+        return repository.getFinishTasks()
+    }
+
+    fun finishTask(uid: Int){
         repository.finishTask(uid)
     }
 
-    fun deleteTask(uid: Long){
+    fun undoTask(id: Int){
+        repository.undoTask(id)
+    }
+
+    fun updateTask(task: Tasks){
+        repository.updateTask(task)
+    }
+
+    fun deleteTask(uid: Int){
         repository.deleteTask(uid)
     }
 }

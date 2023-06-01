@@ -14,8 +14,8 @@ interface UserDao {
     fun insertUser(users: Users): Long
 
     // getting user data details
-    @Query("SELECT * FROM Users WHERE id=:id")
-    fun getUserDataDetails(id:Long):Users
+    @Query("SELECT * FROM Users WHERE account=:account")
+    fun getUserByAccount(account: String):Users
 
     // validate user account if already exists
     @Query("SELECT EXISTS (SELECT * FROM Users WHERE account=:account)")

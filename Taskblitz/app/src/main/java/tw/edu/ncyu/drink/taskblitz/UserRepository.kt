@@ -21,8 +21,8 @@ class UserRepository(val dao: UserDao) {
         return dao.isValidUser(account, password)
     }
 
-    fun getUserDataDetails(id:Long){
-        dao.getUserDataDetails(id)
+    fun getUserByAccount(account: String):Users {
+        return dao.getUserByAccount(account)
     }
 
 }

@@ -22,8 +22,8 @@ class UserViewModel(application: Application): AndroidViewModel(application) {
         return repository.isValidUser(account, password)
     }
 
-    fun getUserData(id: Long){
-        repository.getUserDataDetails(id)
+    fun getUserByAccount(account: String): Users {
+        return repository.getUserByAccount(account)
     }
 
     fun getAllUsers(): LiveData<List<Users>> = repository.getAllUsers()

@@ -3,23 +3,30 @@ package tw.edu.ncyu.drink.taskblitz
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 
 @Dao
 interface TaskDao {
-//    @Insert()
-//    suspend fun insertTask(tasks: Tasks):Long
 
-    // get certain user's all tasks
-    @Query("SELECT * FROM Tasks WHERE user_id=:user_id")
-    fun getUserAllTasks(user_id: Int): LiveData<List<Tasks>>
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertTask(task: Tasks)
 
-    @Query("Select * from Tasks where isFinished=0")
+    @Query("Select * from Tasks")
     fun getAllTasks(): LiveData<List<Tasks>>
 
+    @Query("SELECT * FROM Tasks WHERE isFinished=1")
+    fun getFinishTasks(): LiveData<List<Tasks>>
+
     @Query("Update Tasks Set isFinished = 1 where id=:uid")
-    fun finishTask(uid:Long)
+    fun finishTask(uid: Int)
+
+    @Query("UPDATE Tasks SET isFinished = 0 WHERE id=:id")
+    fun undoTask(id: Int)
+    @Update
+    fun updateTask(task: Tasks)
 
     @Query("Delete from Tasks where id=:uid")
-    fun deleteTask(uid:Long)
+    fun deleteTask(uid:Int)
 }

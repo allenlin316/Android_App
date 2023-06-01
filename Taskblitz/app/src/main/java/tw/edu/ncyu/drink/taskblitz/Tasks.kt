@@ -7,11 +7,14 @@ import androidx.room.PrimaryKey
 class Tasks (
     @PrimaryKey(autoGenerate = true)
     var id : Int?=null,
-    var user_id: Int,
     var title: String,
     var description: String,
     var category: String,
-    var date: Long,
-    var time: Long,
+    var date: String,
+    var time: String,
     var isFinished : Int = 0,
-)
+){
+    override fun toString(): String {
+        return "id: $id, Title: ${title.toString()}, description: $description, ${category.toString()}, ${date.toString()}, ${time.toString()}, $isFinished"
+    }
+}

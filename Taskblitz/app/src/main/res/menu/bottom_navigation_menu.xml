@@ -5,11 +5,12 @@
         android:enabled="true"
         android:icon="@drawable/ic_home_btn"
         android:title="Home"/>
+
     <item
-        android:id="@+id/item_inbox"
+        android:id="@+id/item_finished_task"
         android:enabled="true"
         android:icon="@drawable/ic_inbox_btn"
-        android:title="Inbox"/>
+        android:title="Done"/>
 
     <item
         android:id="@+id/item_upcoming"

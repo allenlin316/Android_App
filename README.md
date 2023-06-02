@@ -4,6 +4,7 @@
 # Applications Design for Mobile Devices
 
 * record school work and self-learning projects 
+* Final project of the class - [Taskblitz](https://github.com/allenlin316/Android_App/tree/main/Taskblitz)
 
 > Reference : Android Kotlin 實作開發
 

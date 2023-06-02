@@ -165,7 +165,7 @@ class CreateTaskDialog: DialogFragment()  {
         val hour = time_group[0].toInt()
         val min = time_group[1].toInt()
 
-        Log.d("getTime", "$year, $month, $day, $hour, $min")
+        //Log.d("getTime", "$year, $month, $day, $hour, $min")
         val calendar = Calendar.getInstance()
         calendar.set(year, month, day, hour, min, 0)
         Log.d("calendar time", calendar.time.toString())

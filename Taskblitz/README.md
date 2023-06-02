@@ -7,7 +7,6 @@
 * It helps users to manage all to-do tasks in the local Room database and can also notify users with `system notification`
 
 
-
 ## :date: Screenshots
 
 <p align="center">
@@ -19,7 +18,7 @@
 <img src="https://hackmd.io/_uploads/HkyS2zPIh.png" alt="home page with tasks" width="200">
 <img src="https://hackmd.io/_uploads/r1Bv3zvI3.png" alt="done fragment" width="200">
 <img src="https://hackmd.io/_uploads/BkeRnMvIn.png" alt="inbox fragment" width="200">
-<img src="https://hackmd.io/_uploads/BkD-aMPL3.png" alt="edit task dialog" width="200">
+<img src="https://hackmd.io/_uploads/HkiIZmvI2.png" alt="edit task dialog" width="200">
 <img src="https://hackmd.io/_uploads/S1XsTzwL2.png" alt="reminder notification" width="200">
     
 </p>

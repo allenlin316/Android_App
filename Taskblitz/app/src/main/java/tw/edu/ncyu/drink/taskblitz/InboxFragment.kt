@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import tw.edu.ncyu.drink.taskblitz.databinding.FragmentInboxBinding
-import java.util.*
 
 class InboxFragment: Fragment() {
 
@@ -36,6 +35,25 @@ class InboxFragment: Fragment() {
             // set the layout manager and the adapter for the recycler view
             binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
             binding.recyclerView.adapter = taskAdapter
+
+            taskAdapter.onItemClick = { task ->
+                // Handle item click here
+                Log.d("taskClicked", "$task is clicked")
+                val createTaskDialog = CreateTaskDialog()
+                val arguments = Bundle().apply {
+                    task.id?.let { putInt("id", it) }
+                    putString("title", "編輯任務")
+                    putString("name", task.title)
+                    putString("description", task.description)
+                    putString("category", task.category)
+                    putString("date", task.date)
+                    putString("time", task.time)
+                    putInt("isFinished", task.isFinished)
+                }
+                createTaskDialog.arguments = arguments
+                createTaskDialog.show(childFragmentManager, "EditTask")
+            }
+
         })
 
         return binding.root

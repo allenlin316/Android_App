@@ -1,27 +1,20 @@
 package tw.edu.ncyu.drink.taskblitz
 
-import android.app.Dialog
+import android.app.*
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.TimePicker
-import androidx.activity.viewModels
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import androidx.fragment.app.viewModels
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.w3c.dom.Text
-import androidx.fragment.app.viewModels
+import java.util.*
 
 class CreateTaskDialog: DialogFragment()  {
 
@@ -36,6 +29,8 @@ class CreateTaskDialog: DialogFragment()  {
         val builder = MaterialAlertDialogBuilder(requireContext())
         builder.setTitle(title)
 
+
+
         // Inflate your custom layout
         val inflater = LayoutInflater.from(context)
         val customView = inflater.inflate(R.layout.dialog_create_task, null)
@@ -49,6 +44,7 @@ class CreateTaskDialog: DialogFragment()  {
         val ed_description = customView.findViewById<EditText>(R.id.ed_description)
         val tv_date = customView.findViewById<TextView>(R.id.tv_date)
         val tv_time = customView.findViewById<TextView>(R.id.tv_time)
+        val checkbox_remind = customView.findViewById<CheckBox>(R.id.checkbox_remind)
         // used in when update would auto fill in previous value
         val pre_name = arguments?.getString("name")?:"任務名稱"
         val pre_description = arguments?.getString("description")?:"寫點備註吧..."
@@ -64,6 +60,7 @@ class CreateTaskDialog: DialogFragment()  {
             tv_time.setText(pre_time)
             ed_description.setText(pre_description)
         }
+
 
         tv_date.setOnClickListener{
             // Show the date picker
@@ -94,7 +91,7 @@ class CreateTaskDialog: DialogFragment()  {
             dialogBuilder.setView(timePicker)
                 .setPositiveButton("OK"){ dialog, which ->
                     val selectedHour = timePicker.hour
-                    val selectedMin = timePicker.minute
+                    val selectedMin = String.format("%02d", timePicker.minute)
 
                     tv_time.text = "${selectedHour.toString()}:${selectedMin.toString()}"
 
@@ -122,6 +119,8 @@ class CreateTaskDialog: DialogFragment()  {
                     viewModel.insertTask(task)
                 }
             }
+            if (checkbox_remind.isChecked)
+                scheduleNotification(ed_name.text.toString(), ed_description.text.toString(), tv_date.text.toString(), tv_time.text.toString())
             dismiss()
         }
 
@@ -131,5 +130,46 @@ class CreateTaskDialog: DialogFragment()  {
         }
 
         return builder.create()
+    }
+
+    private fun scheduleNotification(title: String, description: String, date: String, time: String) {
+        val intent = Intent(requireContext(), Notification::class.java)
+        val title = title
+        val message = description
+        intent.putExtra(titleExtra, title)
+        intent.putExtra(messageExtra, message)
+
+        val pendingIntent = PendingIntent.getBroadcast(
+            requireContext(),
+            notificationID,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val time = getTimeInMillis(date, time)
+        alarmManager.setExactAndAllowWhileIdle(
+            AlarmManager.RTC_WAKEUP,
+            time,
+            pendingIntent
+        )
+        Toast.makeText(requireContext(), "已新增提醒", Toast.LENGTH_LONG).show()
+    }
+
+    private fun getTimeInMillis(date: String, time: String): Long {
+        val date_group = date.split("/")
+        val year = date_group[0].toInt()
+        val month = date_group[1].toInt() - 1
+        val day = date_group[2].toInt()
+        val time_group = time.split(":")
+        val hour = time_group[0].toInt()
+        val min = time_group[1].toInt()
+
+        Log.d("getTime", "$year, $month, $day, $hour, $min")
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, day, hour, min, 0)
+        Log.d("calendar time", calendar.time.toString())
+
+        return calendar.timeInMillis
     }
 }

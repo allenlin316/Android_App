@@ -44,11 +44,25 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="搜尋"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:layout_marginLeft="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/cardView"
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="@+id/cardView" />
+
+    <Button
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:id="@+id/btn_clear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="清除"
+        android:textSize="15sp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/secondaryTextColor"
+        app:strokeColor="@color/secondaryTextColor"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_search"
+        app:layout_constraintStart_toEndOf="@+id/btn_search"
+        app:layout_constraintTop_toTopOf="@+id/btn_search" />
 
     <TextView
         android:id="@+id/tv_notification"
@@ -61,6 +75,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

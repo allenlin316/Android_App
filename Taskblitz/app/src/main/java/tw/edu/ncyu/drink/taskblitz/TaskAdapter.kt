@@ -1,11 +1,12 @@
 package tw.edu.ncyu.drink.taskblitz
 
-import android.content.Context
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.activity.viewModels
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import tw.edu.ncyu.drink.taskblitz.databinding.HomeItemLayoutBinding
@@ -49,6 +50,7 @@ class TaskAdapter(private val viewModel: TaskViewModel, val list: List<Tasks>): 
         }
 
         holder.itemView.setOnClickListener{
+                // Handle item click here
             onItemClick?.invoke(list[position]) // 回傳該 item 回 OnItemClick
         }
     }

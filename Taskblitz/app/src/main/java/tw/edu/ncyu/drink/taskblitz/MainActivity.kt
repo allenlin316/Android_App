@@ -1,6 +1,13 @@
 package tw.edu.ncyu.drink.taskblitz
 
+import android.app.AlarmManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +15,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import tw.edu.ncyu.drink.taskblitz.databinding.ActivityMainBinding
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     // private variable to inflate the layout for the activity
@@ -15,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     // variable to access the ViewModel class
     val viewModel : TaskViewModel  by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,6 +32,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.viewPage.adapter = ViewPagerAdapter(supportFragmentManager)
+
+        // notification
+        createNotificationChannel()
 
         // set onClickListener for the floating action button
         binding.btnAdd.setOnClickListener{
@@ -58,6 +70,17 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    private fun createNotificationChannel()
+    {
+        val name = "Notif Channel"
+        val desc = "A Description of the Channel"
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(channelID, name, importance)
+        channel.description = desc
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
     }
 
     private val onPageChangeListener = object : ViewPager.OnPageChangeListener {

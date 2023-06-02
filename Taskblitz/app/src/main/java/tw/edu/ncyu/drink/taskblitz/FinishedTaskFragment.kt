@@ -9,6 +9,7 @@ import android.widget.DatePicker
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import tw.edu.ncyu.drink.taskblitz.databinding.FragmentFinishedTaskBinding
@@ -29,18 +30,24 @@ class FinishedTaskFragment: Fragment() {
 
         // Observe the LiveData returned by the getAllTasks method
         viewModel.getFinishedTasks().observe(viewLifecycleOwner , Observer {  list->
-            Log.d("getAllTasks_finished", list.toString())
-            if (list.isEmpty()){
-                // no finished tasks
-                binding.tvNotification.text = "沒有完成的任務"
-                binding.tvNotification.visibility = View.VISIBLE
-            } else {
-                binding.tvNotification.visibility = View.GONE
+            observeFinishedTasks(list)
+            taskAdapter.onItemClick = { task ->
+                // Handle item click here
+                Log.d("taskClicked", "$task is clicked")
+                val createTaskDialog = CreateTaskDialog()
+                val arguments = Bundle().apply {
+                    task.id?.let { putInt("id", it) }
+                    putString("title", "編輯任務")
+                    putString("name", task.title)
+                    putString("description", task.description)
+                    putString("category", task.category)
+                    putString("date", task.date)
+                    putString("time", task.time)
+                    putInt("isFinished", task.isFinished)
+                }
+                createTaskDialog.arguments = arguments
+                createTaskDialog.show(childFragmentManager, "EditTask")
             }
-            taskAdapter = TaskAdapter(viewModel, list)
-            // set the layout manager and the adapter for the recycler view
-            binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-            binding.recyclerView.adapter = taskAdapter
         })
 
         binding.tvSearchDate.setOnClickListener{
@@ -87,7 +94,30 @@ class FinishedTaskFragment: Fragment() {
             })
         }
 
+        binding.btnClear.setOnClickListener {
+            // clear the search result and print out all finished tasks
+            binding.tvSearchDate.text = "搜尋日期"
+            viewModel.getFinishedTasks().observe(viewLifecycleOwner, Observer { list ->
+                observeFinishedTasks(list)
+            })
+        }
+
         return binding.root
+    }
+
+    private fun observeFinishedTasks(list: List<Tasks>){
+        Log.d("getAllTasks_finished", list.toString())
+        if (list.isEmpty()){
+            // no finished tasks
+            binding.tvNotification.text = "沒有完成的任務"
+            binding.tvNotification.visibility = View.VISIBLE
+        } else {
+            binding.tvNotification.visibility = View.GONE
+        }
+        taskAdapter = TaskAdapter(viewModel, list)
+        // set the layout manager and the adapter for the recycler view
+        binding.recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        binding.recyclerView.adapter = taskAdapter
     }
 
     private fun getCurrentDate(): String {

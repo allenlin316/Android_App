@@ -2,6 +2,8 @@
 ![success badge](https://img.shields.io/badge/status-success-green)
 # Task Blitz
 
+[Taskblitz APK download](https://drive.google.com/file/d/1gpMBCv3kBSmtl4zA6RYsxRJlPbWmiaxZ/view?usp=sharing)
+
 ## :memo: About
 * A simple To-Do list android mobile app created with Kotlin using `MVVM architecture pattern` and `Room database`. 
 * It helps users to manage all to-do tasks in the local Room database and can also notify users with `system notification`
